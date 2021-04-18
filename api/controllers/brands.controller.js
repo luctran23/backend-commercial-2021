@@ -38,3 +38,16 @@ module.exports.deleteBrand = async (req, res) => {
         res.json({message: error});
     }
 }
+
+module.exports.editBrand = async (req, res) => {
+    try {
+        const updatedBrand = await Brand.updateOne({"_id": req.params.id},
+        {$set: {
+            name: req.body.name,
+            cate_id: req.body.cate_id
+        }})
+        res.json(updatedBrand);
+    } catch (error) {
+        res.json({message: error});
+    }
+}
