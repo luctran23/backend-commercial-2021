@@ -13,6 +13,7 @@ const cameraRoute = require('./api/routes/cameras.route')
 const userRoute = require('./api/routes/users.route')
 const accountRoute = require('./api/routes/accounts.route')
 const billRoute = require('./api/routes/bills.route')
+const promotionRoute = require('./api/routes/promotions.route')
 
 app.use(express.json());
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true }, () => {
@@ -29,6 +30,7 @@ app.use('/api/cameras', cameraRoute);
 app.use('/api/users', userRoute);
 app.use('/api/accounts', accountRoute);
 app.use('/api/bills', billRoute);
+app.use('/api/promotions', promotionRoute);
 // APIS   - end
 
 
