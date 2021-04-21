@@ -14,6 +14,8 @@ const userRoute = require('./api/routes/users.route')
 const accountRoute = require('./api/routes/accounts.route')
 const billRoute = require('./api/routes/bills.route')
 const promotionRoute = require('./api/routes/promotions.route')
+const commentRoute = require('./api/routes/comments.route')
+const rateRoute = require('./api/routes/rates.route')
 
 app.use(express.json());
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true }, () => {
@@ -31,6 +33,8 @@ app.use('/api/users', userRoute);
 app.use('/api/accounts', accountRoute);
 app.use('/api/bills', billRoute);
 app.use('/api/promotions', promotionRoute);
+app.use('/api/comments', commentRoute);
+app.use('/api/rates', rateRoute);
 // APIS   - end
 
 
