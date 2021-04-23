@@ -4,7 +4,6 @@ const CameraSchema = new mongoose.Schema({
     name: String,
     cate_id: String,
     brand_id: String,
-    promotions: [String],
     quantity: Number,
     price: String,
     salePrice: String,

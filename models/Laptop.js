@@ -4,7 +4,6 @@ const LaptopSchema = new mongoose.Schema({
     name: String,
     cate_id: String,
     brand_id: String,
-    promotions: [String],
     cpu: String,
     price: String,
     salePrice: String,

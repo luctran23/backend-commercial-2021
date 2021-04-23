@@ -66,7 +66,6 @@ module.exports.edit = async (req, res) => {
                     name: req.body.name,
                     cate_id: req.body.cate_id,
                     brand_id: req.body.brand_id,
-                    promotions: req.body.promotions,
                     price: req.body.price,
                     salePrice: req.body.salePrice,
                     quantity: req.body.quantity,

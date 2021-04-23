@@ -10,7 +10,8 @@ module.exports.getAll = async (req, res) => {
 };
 module.exports.create = async (req, res) => {
     const item = new Promotion({
-        name: req.body.name
+        name: req.body.name,
+        prod_id: req.body.prod_id
     })
     try {
         const savedItem = await item.save();
@@ -43,7 +44,8 @@ module.exports.edit = async (req, res) => {
         const updatedItem = await Promotion.updateOne({ "_id": req.params.id },
             {
                 $set: {
-                    name: req.body.name
+                    name: req.body.name,
+                    prod_id: req.body.prod_id
                 }
             })
         res.json(updatedItem);
