@@ -14,5 +14,6 @@ router.get('/:id', controllers.specificBrand);
 //delete a brand
 router.delete('/:id', controllers.deleteBrand);
 
-
+//update a brand
+router.patch('/:id', controllers.editBrand);
 module.exports = router;

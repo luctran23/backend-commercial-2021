@@ -1,9 +1,15 @@
 const Bill = require("../../models/Bill");
+const User = require("../../models/User");
 
 module.exports.getAll = async (req, res) => {
     try {
         const allItems = await Bill.find();
-        res.json(allItems);
+        const items = await Promise.all(allItems.map(async(ele) => {
+            let user = await User.findOne({"_id": ele.user_id});
+            ele.user_name = user.name;
+            return ele;
+        }));
+        res.json(items);
     } catch (error) {
         res.json({ message: error });
     }
@@ -12,7 +18,7 @@ module.exports.create = async (req, res) => {
     const item = new Bill({
         date: req.body.date,
         user_id: req.body.user_id,
-        products: req.body.products
+        prod_Ids: req.body.prod_Ids
     })
     try {
         const savedItem = await item.save();
@@ -47,7 +53,7 @@ module.exports.edit = async (req, res) => {
                 $set: {
                     date: req.body.date,
                     user_id: req.body.user_id,
-                    products: req.body.products
+                    prod_Ids: req.body.prod_Ids
                 }
             })
         res.json(updatedItem);

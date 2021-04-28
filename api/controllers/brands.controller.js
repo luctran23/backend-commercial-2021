@@ -1,9 +1,15 @@
 const Brand = require("../../models/Brand");
+const Category = require("../../models/Category");
 
 module.exports.getAllBrands = async (req, res) => {
     try {
         const allBrands = await Brand.find();
-        res.json(allBrands);
+        const brands = await Promise.all(allBrands.map( async (item) =>{
+            let cate =  await Category.findOne({"_id": item.cate_id});
+            item.cate_name = cate.name;
+            return item;
+        }));
+        res.json(brands);
     } catch (error) {
         res.json({message: error});
     }

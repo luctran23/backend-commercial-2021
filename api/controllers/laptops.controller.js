@@ -1,9 +1,15 @@
 const Laptop = require("../../models/Laptop");
+const Category = require("../../models/Category");
 
 module.exports.getAll = async (req, res) => {
     try {
         const allItems = await Laptop.find();
-        res.json(allItems);
+        const items = await Promise.all(allItems.map(async(ele) => {
+            let cate =  await Category.findOne({"_id": ele.cate_id});
+            ele.cate_name = cate.name;
+            return ele;
+        }));
+        res.json(items);
     } catch (error) {
         res.json({ message: error });
     }
@@ -40,6 +46,8 @@ module.exports.create = async (req, res) => {
 module.exports.specific = async (req, res) => {
     try {
         const specificItem = await Laptop.findOne({ "_id": req.params.id })
+        let cate = await Category.findOne({"_id": specificItem.cate_id });
+        specificItem.cate_name = cate.name;
         res.json(specificItem);
     } catch (error) {
         res.json({ message: error });

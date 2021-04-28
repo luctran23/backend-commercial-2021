@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const AccessorySchema = new mongoose.Schema({
     name: String,
     cate_id: String,
+    cate_name: String,
     brand_id: String,
     quantity: Number,
     price: String,

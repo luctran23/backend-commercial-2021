@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const PhoneSchema = new mongoose.Schema({
     name: String,
     cate_id: String,
+    cate_name: String,
     brand_id: String,
     price: String,
     salePrice: String,
