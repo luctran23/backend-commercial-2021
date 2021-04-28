@@ -16,8 +16,5 @@ router.delete('/:id', controllers.deleteBrand);
 
 //update a brand
 router.patch('/:id', controllers.editBrand);
-<<<<<<< HEAD
-=======
 
->>>>>>> 9e42b696cfd78b57af41992fc42807051e62fff6
 module.exports = router;
