@@ -1,5 +1,9 @@
 const Brand = require("../../models/Brand");
 const Category = require("../../models/Category");
+const Phone = require("../../models/Phone");
+const Laptop = require("../../models/Laptop");
+const Camera = require("../../models/Camera");
+const Accessory = require("../../models/Accessory");
 
 module.exports.getAllBrands = async (req, res) => {
     try {
@@ -39,6 +43,10 @@ module.exports.specificBrand = async (req, res) => {
 module.exports.deleteBrand = async (req, res) => {
     try {
         const removedBrand = await Brand.deleteOne({"_id": req.params.id});
+        const removedPhone = await Phone.remove({"brand_id": req.params.id });
+        const removedLaptop = await Laptop.remove({"brand_id": req.params.id });
+        const removedCamera = await Camera.remove({"brand_id": req.params.id });
+        const removedAccessory = await Accessory.remove({"brand_id": req.params.id }); 
         res.json(removedBrand)
     } catch (error) {
         res.json({message: error});

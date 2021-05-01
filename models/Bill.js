@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const BillSchema = new mongoose.Schema({
-    date: {
-        type: Date,
-        default: Date.now
-    },
+    date: Date,
     user_id: String,
     user_name: String,
     prod_Ids: [String]

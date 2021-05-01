@@ -16,7 +16,7 @@ module.exports.getAll = async (req, res) => {
 };
 module.exports.create = async (req, res) => {
     const item = new Bill({
-        date: req.body.date,
+        date: Date.now,
         user_id: req.body.user_id,
         prod_Ids: req.body.prod_Ids
     })
