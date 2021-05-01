@@ -5,6 +5,7 @@ const Phone = require("../../models/Phone");
 const Laptop = require("../../models/Laptop");
 const Camera = require("../../models/Camera");
 const Accessory = require("../../models/Accessory");
+const Promotion = require("../../models/Promotion");
 
 module.exports.getAllCatetories = async (req, res) => {
     try {
@@ -43,6 +44,7 @@ module.exports.deleteCategory = async (req, res) => {
         const removedLaptop = await Laptop.remove({"cate_id": req.params.id });
         const removedCamera = await Camera.remove({"cate_id": req.params.id });
         const removedAccessory = await Accessory.remove({"cate_id": req.params.id });
+        const removedPromotion = await Promotion.remove({"cate_id": req.params.id });
         res.json(removedCate)
     } catch (error) {
         res.json({message: error});
