@@ -1,5 +1,10 @@
 const { update } = require("../../models/Category");
 const Category = require("../../models/Category");
+const Brand = require("../../models/Brand");
+const Phone = require("../../models/Phone");
+const Laptop = require("../../models/Laptop");
+const Camera = require("../../models/Camera");
+const Accessory = require("../../models/Accessory");
 
 module.exports.getAllCatetories = async (req, res) => {
     try {
@@ -33,6 +38,11 @@ module.exports.specificCategory = async (req, res) => {
 module.exports.deleteCategory = async (req, res) => {
     try {
         const removedCate = await Category.deleteOne({"_id": req.params.id});
+        const removedBrand = await Brand.remove({"cate_id": req.params.id });
+        const removedPhone = await Phone.remove({"cate_id": req.params.id });
+        const removedLaptop = await Laptop.remove({"cate_id": req.params.id });
+        const removedCamera = await Camera.remove({"cate_id": req.params.id });
+        const removedAccessory = await Accessory.remove({"cate_id": req.params.id });
         res.json(removedCate)
     } catch (error) {
         res.json({message: error});

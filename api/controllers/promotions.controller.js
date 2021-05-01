@@ -1,9 +1,25 @@
 const Promotion = require("../../models/Promotion");
+const Phone = require("../../models/Phone");
+const Accessory = require("../../models/Accessory");
+const Camera = require("../../models/Camera");
+const Laptop = require("../../models/Laptop");
 
 module.exports.getAll = async (req, res) => {
     try {
         const allItems = await Promotion.find();
-        res.json(allItems);
+        const phones = await Phone.find();
+        const accessories = await Accessory.find();
+        const cameras = await Camera.find();
+        const laptops = await Laptop.find();
+        const allProds = [...phones, ...accessories, ...cameras, ...laptops];
+        const products = allItems.map((ele) => {
+            if (ele.prod_id) {
+                ele.prod_name = allProds.find(item => item._id == ele.prod_id).name;
+                return ele;
+            }
+            return ele;
+        });
+        res.json(products);
     } catch (error) {
         res.json({ message: error });
     }
