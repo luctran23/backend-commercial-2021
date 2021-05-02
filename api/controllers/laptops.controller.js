@@ -33,7 +33,7 @@ module.exports.create = async (req, res) => {
         origin: req.body.origin,
         launched: req.body.launched,
         description: req.body.description,
-        descriptionImages: []
+        descriptionImages: req.body.descriptionImages
     })
     try {
         const savedItem = await item.save();

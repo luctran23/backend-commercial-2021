@@ -23,8 +23,8 @@ module.exports.specific = async (req, res) => {
         const laptops = await Laptop.find();
         const allProds = [...phones, ...accessories, ...cameras, ...laptops];
 
-        res.json(allProds.filter(item => item._id == req.params.id));
+        res.json(allProds.filter(item => item.cate_id == req.params.id));
     } catch (error) {
-        res.json({ message: error });
+        res.json({ message: error }); 
     }
 }

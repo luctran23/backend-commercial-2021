@@ -19,7 +19,6 @@ module.exports.create = async (req, res) => {
         name: req.body.name,
         cate_id: req.body.cate_id,
         brand_id: req.body.brand_id,
-        promotions: [],
         price: req.body.price,
         salePrice: req.body.salePrice,
         quantity: req.body.quantity,
@@ -36,7 +35,7 @@ module.exports.create = async (req, res) => {
         origin: req.body.origin,
         launched: req.body.launched,
         description: req.body.description,
-        descriptionImages: []
+        descriptionImages: req.body.descriptionImages
     })
     try {
         const savedItem = await item.save();
