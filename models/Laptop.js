@@ -9,6 +9,7 @@ const LaptopSchema = new mongoose.Schema({
     price: String,
     salePrice: String,
     quantity: Number,
+    quantityInCart: Number,
     ram: String,
     screen: String,
     graphic: String,

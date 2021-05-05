@@ -8,6 +8,7 @@ const PhoneSchema = new mongoose.Schema({
     price: String,
     salePrice: String,
     quantity: Number,
+    quantityInCart: Number,
     screen: String,
     camera: String,
     selfieCamera: String,

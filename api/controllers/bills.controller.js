@@ -1,5 +1,9 @@
 const Bill = require("../../models/Bill");
 const User = require("../../models/User");
+const Phone = require("../../models/Phone");
+const Accessory = require("../../models/Accessory");
+const Camera = require("../../models/Camera");
+const Laptop = require("../../models/Laptop");
 
 module.exports.getAll = async (req, res) => {
     try {
@@ -16,7 +20,7 @@ module.exports.getAll = async (req, res) => {
 };
 module.exports.create = async (req, res) => {
     const item = new Bill({
-        date: Date.now,
+        date: req.body.date,
         user_id: req.body.user_id,
         prod_Ids: req.body.prod_Ids
     })
@@ -31,7 +35,23 @@ module.exports.create = async (req, res) => {
 module.exports.specific = async (req, res) => {
     try {
         const specificItem = await Bill.findOne({ "_id": req.params.id })
-        res.json(specificItem);
+        const phones = await Phone.find();
+        const accessories = await Accessory.find();
+        const cameras = await Camera.find();
+        const laptops = await Laptop.find();
+        const allProds = [...phones, ...accessories, ...cameras, ...laptops];
+        const products = specificItem.prod_Ids.map( (item) => {
+            var prod =  allProds.find(value => value._id == item.prod_id);
+            item.name = prod.name;
+            item.descriptionImages = prod.descriptionImages;
+            item.price = prod.price;
+            item.salePrice = prod.salePrice;
+            return item;
+        });
+       
+        const user = await User.findOne({"_id": specificItem.user_id})
+        const result = {"_id": specificItem._id, "date": specificItem.date, "user": user, "products": products};
+        res.json(result);
     } catch (error) {
         res.json({ message: error });
     }

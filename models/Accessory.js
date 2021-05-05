@@ -6,6 +6,7 @@ const AccessorySchema = new mongoose.Schema({
     cate_name: String,
     brand_id: String,
     quantity: Number,
+    quantityInCart: Number,
     price: String,
     salePrice: String,
     origin: String,

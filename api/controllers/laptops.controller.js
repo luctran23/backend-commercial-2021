@@ -6,7 +6,8 @@ module.exports.getAll = async (req, res) => {
         const allItems = await Laptop.find();
         const items = await Promise.all(allItems.map(async(ele) => {
             let cate =  await Category.findOne({"_id": ele.cate_id});
-            ele.cate_name = cate.name;
+            if(cate) {
+                ele.cate_name = cate.name;}
             return ele;
         }));
         res.json(items);

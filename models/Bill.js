@@ -4,7 +4,7 @@ const BillSchema = new mongoose.Schema({
     date: Date,
     user_id: String,
     user_name: String,
-    prod_Ids: [String]
+    prod_Ids: [Object]
 }, { versionKey: false })
 const Bill = mongoose.model('Bill', BillSchema, 'Bills');
 
