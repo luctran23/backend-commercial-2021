@@ -22,6 +22,7 @@ module.exports.create = async (req, res) => {
     const item = new Bill({
         date: req.body.date,
         user_id: req.body.user_id,
+        status: req.body.status,
         prod_Ids: req.body.prod_Ids
     })
     try {
@@ -73,6 +74,7 @@ module.exports.edit = async (req, res) => {
                 $set: {
                     date: req.body.date,
                     user_id: req.body.user_id,
+                    status: req.body.status,
                     prod_Ids: req.body.prod_Ids
                 }
             })

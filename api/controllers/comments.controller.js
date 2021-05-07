@@ -9,6 +9,7 @@ module.exports.getAll = async (req, res) => {
     } catch (error) {
         res.json({ message: error });
     }
+    
 };
 
 module.exports.create = async (req, res) => {

@@ -18,6 +18,8 @@ const promotionRoute = require('./api/routes/promotions.route')
 const commentRoute = require('./api/routes/comments.route')
 const rateRoute = require('./api/routes/rates.route')
 const allProdRoute = require('./api/routes/allProducts.route')
+const saleRoute = require('./api/routes/sales.route')
+
 app.use(cors());
 app.use(express.json());
 
@@ -39,6 +41,7 @@ app.use('/api/promotions', promotionRoute);
 app.use('/api/comments', commentRoute);
 app.use('/api/rates', rateRoute);
 app.use('/api/allProducts', allProdRoute);
+app.use('/api/sales', saleRoute);
 // APIS   - end
 
 
