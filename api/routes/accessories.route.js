@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controllers = require('../controllers/accessories.controller');
+const verify = require('../../middlewares/verifyToken.middleware');
 
 //get all accessories
 router.get('/', controllers.getAll);

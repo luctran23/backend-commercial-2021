@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3001
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv/config')
@@ -19,6 +19,8 @@ const commentRoute = require('./api/routes/comments.route')
 const rateRoute = require('./api/routes/rates.route')
 const allProdRoute = require('./api/routes/allProducts.route')
 const saleRoute = require('./api/routes/sales.route')
+const sendEmailRoute = require('./api/routes/sendEmail.route')
+const authRoute = require('./api/routes/auth.route')
 
 app.use(cors());
 app.use(express.json());
@@ -26,7 +28,8 @@ app.use(express.json());
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true }, () => {
   console.log("Connected to DB");
 })
-
+//Route Middlewares
+app.use('/api/account', authRoute);
 // APIs   - start
 app.use('/api/categories', cateRoute);
 app.use('/api/brands', brandRoute);
@@ -42,6 +45,8 @@ app.use('/api/comments', commentRoute);
 app.use('/api/rates', rateRoute);
 app.use('/api/allProducts', allProdRoute);
 app.use('/api/sales', saleRoute);
+app.use('/api/sendEmail', sendEmailRoute);
+
 // APIS   - end
 
 

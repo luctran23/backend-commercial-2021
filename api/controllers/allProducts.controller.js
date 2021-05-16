@@ -15,6 +15,14 @@ module.exports.getAll = async (req, res) => {
         res.json({ message: error });
     }
 };
+module.exports.getAllProds = async (req, res) => {
+        const phones = await Phone.find();
+        const accessories = await Accessory.find();
+        const cameras = await Camera.find();
+        const laptops = await Laptop.find();
+        const allProds = [...phones, ...accessories, ...cameras, ...laptops];
+        return allProds;
+};
 module.exports.specific = async (req, res) => {
     try {
         const phones = await Phone.find();

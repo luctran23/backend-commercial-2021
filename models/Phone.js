@@ -5,6 +5,7 @@ const PhoneSchema = new mongoose.Schema({
     cate_id: String,
     cate_name: String,
     brand_id: String,
+    inputPrice: String,
     price: String,
     salePrice: String,
     quantity: Number,

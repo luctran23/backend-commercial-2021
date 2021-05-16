@@ -6,6 +6,7 @@ const LaptopSchema = new mongoose.Schema({
     cate_name: String,
     brand_id: String,
     cpu: String,
+    inputPrice: String,
     price: String,
     salePrice: String,
     quantity: Number,
