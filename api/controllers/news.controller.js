@@ -13,7 +13,8 @@ module.exports.create = async (req, res) => {
     const item = new News({
         title: req.body.title,
         content: req.body.content,
-        time: req.body.time
+        time: req.body.time,
+        image: req.body.image
     });
     try{
         const savedItem = await item.save();
@@ -48,7 +49,8 @@ module.exports.edit = async (req, res) => {
                 $set: {
                     title: req.body.title,
                     content: req.body.content,
-                    time: req.body.time
+                    time: req.body.time,
+                    image: req.body.image
                 }
             })
         res.json(updatedItem);
