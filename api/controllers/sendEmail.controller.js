@@ -2,14 +2,21 @@ const nodemailer = require('nodemailer');
 const controllers = require('../controllers/allProducts.controller');
 
 module.exports.send = async (req, res) => {
-    var transporter = nodemailer.createTransport({
+
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
         service: 'gmail',
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // true for 465, false for other ports
         auth: {
-            user: 'electrostore64@gmail.com',
-            pass: 'goodjob123'
-        }
+            user: 'electrostore64@gmail.com', // generated ethereal user
+            pass: 'goodjob123', // generated ethereal password
+        },
     });
+
     const allProds = await controllers.getAllProds();
+    console.log(allProds[0])
     const productsInCart = req.body.prod_Ids;
     productsInCart.map(item => {
         var prod = allProds.find(value => value._id == item.prod_id);
