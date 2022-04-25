@@ -11,7 +11,7 @@ module.exports.send = async (req, res) => {
         secure: false, // true for 465, false for other ports
         auth: {
             user: 'electrostore64@gmail.com', // generated ethereal user
-            pass: 'goodjob123', // generated ethereal password
+            pass: process.env.EMAIL_PASS, // generated ethereal password
         },
     });
 

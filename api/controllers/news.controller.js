@@ -54,7 +54,7 @@ module.exports.edit = async (req, res) => {
                 }
             })
         res.json(updatedItem);
-    } catch(err) {
+    } catch(error) {
         res.json({ message: error })
     }
 };
